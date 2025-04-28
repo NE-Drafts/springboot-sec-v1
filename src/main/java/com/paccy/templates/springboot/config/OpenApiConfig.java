@@ -1,34 +1,56 @@
 package com.paccy.templates.springboot.config;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.annotations.servers.Server;
 
-import io.swagger.v3.oas.models.ExternalDocumentation;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+@OpenAPIDefinition(
+        info = @Info(
+                contact = @Contact(
+                        name = "Mike Nzabera",
+                        email="contact@gmail.com",
+                        url = "http://localhost:8000/guest"
+                ),
+                description = "OpenApi documentation for Vehicle Tracking Management System",
+                title = "OpenApi specification - Mike_pn",
+                license = @License(
+                        name = "MIT",
+                        url = "https://some-url.com"
+                ),
+                termsOfService = "Terms of service"
+        ),
+        servers = {
+                @Server(
+                        description = "Local ENV",
+                        url = "http://localhost:8000/api/v1"
 
-@Configuration
-public class OpenApiConfig {
-
-    @Bean
-    public OpenAPI templateOpenApi(){
-
-        return new OpenAPI()
-                .info( new Info()
-                        .title("SPRINGBOOT TEMPLATE APIs")
-                        .description("SPRINGBOOT TEMPLATE APIs documentation")
-                        .version("v1.0")
-                        .contact(new Contact().email("paccy7002@gmail.com").url("https://github.com/PaccyC").name("Paccy"))
-                        .license(new License().name("Apache 2.0").url("API license URL"))
-
+                ),
+                @Server(
+                        description = "Prod ENV",
+                        url = "https://www.linkedin.com/feed/"
 
                 )
-                .externalDocs(new ExternalDocumentation().description("SPRINGBOOT TEMPLATE APIs")
-                        .url("www.example.com"));
+        },
+        security = {
+                @SecurityRequirement(
+                        name = "bearerAuth"
+                )
+        }
+)
+@SecurityScheme(
+        name = "bearerAuth",
+        description = "JWT auth description",
+        scheme = "bearer",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        in = SecuritySchemeIn.HEADER
 
-    }
-
-
+)
+public class OpenApiConfig {
 }

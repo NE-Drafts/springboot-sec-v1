@@ -15,8 +15,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/springboot_template_db
-    username: pacifique
-    password: myPassword123
+    username: postgres
+    password: Fomula123!
 
 
 
@@ -37,7 +37,7 @@ server:
 
 uploads:
   extensions: pdf,png,jpeg,jpg
-  directory: { user_profiles: /opt/ne-springboot/uploads/user_profiles, docs: /opt/ne-springboot/uploads/docs }
+  directory: { user_profiles: C:/Users/user/uploads/user_profiles, docs: C:/Users/user/uploads/docs }
 
 
 

@@ -13,5 +13,4 @@ public interface IUserService {
   User getMe();
   Optional<User> getUserByEmail(String email);
 
-
 }
